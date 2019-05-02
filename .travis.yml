@@ -1,10 +1,18 @@
+#
+# Florent Poinsard
+#
+# Epitech Innovation Hub Project
+#
+# Pedafy 2019
+#
+
 language: go
 before_install:
-- openssl aes-256-cbc -K $encrypted_9e1d4742ee66_key -iv $encrypted_9e1d4742ee66_iv -in pedafy-251c5ecfe2ec.json.enc -out ../../keys/google_app_engine/pedafy-251c5ecfe2ec.json -d
+  - openssl aes-256-cbc -K $encrypted_9e1d4742ee66_key -iv $encrypted_9e1d4742ee66_iv -in ./keys/pedafy-251c5ecfe2ec.json.enc -out pedafy-251c5ecfe2ec.json -d
 
 script:
-- go build -o server
-- go clean
+  - go build -o server
+  - go clean
 
 deploy:
   provider: gae
