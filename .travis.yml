@@ -1,0 +1,13 @@
+language: go
+before_install:
+- openssl aes-256-cbc -K $encrypted_9e1d4742ee66_key -iv $encrypted_9e1d4742ee66_iv -in pedafy-251c5ecfe2ec.json.enc -out ../../keys/google_app_engine/pedafy-251c5ecfe2ec.json -d
+
+script:
+- go build -o server
+- go clean
+
+deploy:
+  provider: gae
+  keyfile: pedafy-251c5ecfe2ec.json
+  project: pedafy
+  on: master

@@ -1,0 +1,31 @@
+#
+# Pedafy - tasks service Version 1
+#
+# An Epitech Innovation Hub project
+#
+# florent.poinsard@epitech.eu
+#
+
+runtime: go
+api_version: go1
+service: tasks
+
+# dev / testing scaling
+manual_scaling:
+  instances: 1
+resources:
+  cpu: 1
+  memory_gb: 0.5
+  disk_size_gb: 10
+
+handlers:
+  # serve static file (i.e: javascript, css, image, ...)
+  - url: /static
+    static_dir: public
+    secure: always
+
+  # for all routes, require HTTPS
+  - url: .*
+    script: _go_app
+    secure: always
+    redirect_http_response_code: 301
