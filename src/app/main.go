@@ -2,8 +2,10 @@ package main
 
 import (
 	"log"
+	"os"
 
 	"github.com/joho/godotenv"
+	"github.com/pedafy/pedafy-tasks/src/version"
 	"google.golang.org/appengine"
 )
 
@@ -17,9 +19,15 @@ func main() {
 		}
 	}
 
+	if v := os.Getenv("API_VERSION"); v == "" {
+		srv.SetCurrentVersion(version.Default())
+	} else {
+		srv.SetCurrentVersion(v)
+	}
+
 	err := srv.InitAPI()
 	if err != nil {
-		log.Fatal(err.Error())
+		log.Fatal(err)
 	}
 
 	srv.RegisterHandlers()
