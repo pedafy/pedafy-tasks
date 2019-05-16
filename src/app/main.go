@@ -1,16 +1,14 @@
 package main
 
 import (
-	"fmt"
 	"log"
-	"net/http"
-	"time"
 
 	"github.com/joho/godotenv"
 	"google.golang.org/appengine"
 )
 
 func main() {
+	var srv server
 
 	if appengine.IsDevAppServer() {
 		err := godotenv.Load("../../.env")
@@ -19,11 +17,12 @@ func main() {
 		}
 	}
 
-	http.HandleFunc("/", apiHomeH)
+	err := srv.InitAPI()
+	if err != nil {
+		log.Fatal(err.Error())
+	}
+
+	srv.RegisterHandlers()
 
 	appengine.Main()
-}
-
-func apiHomeH(w http.ResponseWriter, r *http.Request) {
-	fmt.Fprintf(w, `%s`, time.Now().Format(time.RFC850))
 }
