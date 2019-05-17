@@ -11,7 +11,7 @@ import (
 func NewAPIHandler(currentVersion version.Version) api.APIHandler {
 	switch currentVersion {
 	case version.Version1:
-		return &apiv1.APIv1{}
+		return &apiv1.APIv1{Version: currentVersion}
 	default:
 		return nil
 	}
