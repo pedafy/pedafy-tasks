@@ -2,7 +2,11 @@ package main
 
 import (
 	"log"
+	"net/http"
 	"os"
+
+	// mysql driver
+	_ "github.com/go-sql-driver/mysql"
 
 	"github.com/joho/godotenv"
 	"github.com/pedafy/pedafy-tasks/src/version"
@@ -32,5 +36,12 @@ func main() {
 
 	srv.RegisterHandlers()
 
+	if len(os.Args) == 2 && os.Args[1] == "--debug" {
+		err := http.ListenAndServe(":10002", nil)
+		if err != nil {
+			log.Fatal(err.Error())
+		}
+		return
+	}
 	appengine.Main()
 }

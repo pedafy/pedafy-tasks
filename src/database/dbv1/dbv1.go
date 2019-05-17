@@ -28,3 +28,8 @@ func (d *DBv1) Connect(user, pass, dbName, url string) error {
 	}
 	return err
 }
+
+// IsNew returns true if the database is not connected yet
+func (d *DBv1) IsNew() bool {
+	return d.db == nil
+}
