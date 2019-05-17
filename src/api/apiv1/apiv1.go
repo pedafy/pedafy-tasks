@@ -48,7 +48,9 @@ func (a *APIv1) registerAllRoutes(r *mux.Router) {
 	r.Methods(http.MethodGet).Path("/_ah/start").HandlerFunc(a.startupHandler)
 
 	// API
-	// TODO: implement API here
+	r.Methods(http.MethodGet).Path("/status").HandlerFunc(a.getAllStatusHandler)
+	r.Methods(http.MethodGet).Path("/status/{id:[0-9]+}").HandlerFunc(a.getStatusByIDHandler)
+	r.Methods(http.MethodGet).Path("/status/{name}").HandlerFunc(a.getStatusByNameHandler)
 }
 
 func (a *APIv1) connectDatabase(ctx context.Context) {
