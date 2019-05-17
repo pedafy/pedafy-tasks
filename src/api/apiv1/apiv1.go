@@ -1,6 +1,7 @@
 package apiv1
 
 import (
+	"github.com/gorilla/mux"
 	"github.com/pedafy/pedafy-tasks/src/database"
 	"github.com/pedafy/pedafy-tasks/src/database/layer"
 	"github.com/pedafy/pedafy-tasks/src/version"
@@ -16,4 +17,9 @@ type APIv1 struct {
 // current API version
 func (a *APIv1) InitialisationDatabase() {
 	a.databaseHandler = layer.NewDatabaseHandler(a.version)
+}
+
+// Register all the routes of the API to the given mux.Router
+func (a *APIv1) Register(r *mux.Router) {
+
 }

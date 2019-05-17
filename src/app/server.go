@@ -3,7 +3,10 @@ package main
 import (
 	"errors"
 	"net/http"
+	"os"
 
+	"github.com/gorilla/handlers"
+	"github.com/gorilla/mux"
 	"github.com/pedafy/pedafy-tasks/src/api"
 	"github.com/pedafy/pedafy-tasks/src/api/layer"
 	"github.com/pedafy/pedafy-tasks/src/version"
@@ -32,11 +35,16 @@ func (s *server) InitAPI() error {
 // RegisterHandlers will register all API URL
 func (s *server) RegisterHandlers() {
 
-	// TODO: register handlers using gorilla mux
+	r := mux.NewRouter()
 
-	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
+	s.apiHandler.Register(r)
+
+	// TODO: Delete this test code
+	r.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
 		if _, err := w.Write([]byte("Hello")); err != nil {
 			http.Error(w, "Error", http.StatusInternalServerError)
 		}
 	})
+
+	http.Handle("/", handlers.CombinedLoggingHandler(os.Stderr, r))
 }
