@@ -51,6 +51,12 @@ func (a *APIv1) registerAllRoutes(r *mux.Router) {
 	r.Methods(http.MethodGet).Path("/status").HandlerFunc(a.getAllStatusHandler)
 	r.Methods(http.MethodGet).Path("/status/{id:[0-9]+}").HandlerFunc(a.getStatusByIDHandler)
 	r.Methods(http.MethodGet).Path("/status/{name}").HandlerFunc(a.getStatusByNameHandler)
+
+	r.Methods(http.MethodGet).Path("/tasks").HandlerFunc(a.taskGetAllHandler)
+	r.Methods(http.MethodGet).Path("/tasks/{id_kind}/{id:[0-9]+}").HandlerFunc(a.taskGetAllByFilterHandler)
+	r.Methods(http.MethodPut).Path("/task").HandlerFunc(a.newTaskHandler)
+	r.Methods(http.MethodPost).Path("/task/{id:[0-9]+}").HandlerFunc(a.modifyTaskHandler)
+	r.Methods(http.MethodPost).Path("/task/archive/{id:[0-9]+}").HandlerFunc(a.archiveTaskHandler)
 }
 
 func (a *APIv1) connectDatabase(ctx context.Context) {
