@@ -34,3 +34,14 @@ func (a *APIv1) setJSON(next http.Handler) http.Handler {
 		next.ServeHTTP(w, r)
 	})
 }
+
+func (a *APIv1) checkAuth(next http.Handler) http.Handler {
+	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		if r.URL.RequestURI() != "/" && r.URL.RequestURI() != "/_ah/start" && r.URL.RequestURI() != "/tig/v1/" &&
+			a.apiToken != "" && r.Header.Get("Authorization") != a.apiToken {
+			http.Error(w, `{"error":"forbidden"}`, http.StatusForbidden)
+		} else {
+			next.ServeHTTP(w, r)
+		}
+	})
+}

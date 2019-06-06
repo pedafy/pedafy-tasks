@@ -38,6 +38,7 @@ func (a *APIv1) Register(r *mux.Router) {
 
 func (a *APIv1) registerMiddleware(r *mux.Router) {
 	r.Use(a.setJSON)
+	r.Use(a.checkAuth)
 }
 
 func (a *APIv1) registerAllRoutes(r *mux.Router) {
