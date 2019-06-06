@@ -13,3 +13,7 @@
 
 # Env file
 .env
+
+# Dev folders
+.vscode
+.idea
