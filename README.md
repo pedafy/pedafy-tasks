@@ -9,13 +9,13 @@ This API handles interactions with the tasks database.
 The tasks database holds data about all the tasks existing in Pedafy.
 
 ## Version 1
-- [ ] Create a new task
-- [ ] Modify a task
-- [ ] Change the status to a task to "archived"
-- [ ] Get all the available status for a task
-- [ ] Get all task
-- [ ] Get all task by type of id (status, creator ...)
-- [ ] Get all task by order (new, due date ...)
+- [x] Create a new task
+- [x] Modify a task
+- [x] Change the status to a task to "archived"
+- [x] Get all the available status for a task
+- [x] Get all task
+- [x] Get all task by type of id (status, creator ...)
+- [x] Get all task by order (new, due date ...)
 
 ## Authors
 florent.poinsard@gmail.com
