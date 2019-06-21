@@ -7,7 +7,7 @@
 | Action | Method | Route | Response code |
 | ------ | ------ | ----- | ------------- |
 | Get all tasks | `GET` | `/tasks` | `200`, `204`, `403`, `503` |
-| Get all tasks by order | `GET` | `/tasks?sort=status|new|due` | `200`, `204`, `403`, `503` |
+| Get all tasks by order | `GET` | `/tasks?sort=status/new/due` | `200`, `204`, `403`, `503` |
 | Get all by id kind | `GET` | `/tasks/{id_kind}/{id:[0-9]+}` | `200`, `204`, `403`, `503` |
 | Create a task | `PUT` | `/task` | `201`, `403`, `422`, `503` |
 | Modify a task | `POST` | `/task/{id:[0-9]+}` | `200`,`403`, `410`, `422`, `503` |
