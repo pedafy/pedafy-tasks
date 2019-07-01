@@ -173,4 +173,3 @@ func (d *DBv1) isInDatabase(ID int) bool {
 	}
 	return true
 }
-
