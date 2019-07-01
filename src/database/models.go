@@ -5,7 +5,7 @@ import "time"
 // Tasks refers to the tasks table in the database
 type Tasks struct {
 	ID          int        `db:"id" json:"id"`
-	CreatorID   int        `db:"id" json:"creator_id"`
+	CreatorID   string     `db:"creator_id" json:"creator_id"`
 	StatusID    int        `db:"status_id" json:"status_id"`
 	Title       string     `db:"title" json:"title"`
 	Description string     `db:"description" json:"description"`
